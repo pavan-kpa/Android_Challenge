@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://service-catalog.tools.personio-internal.de/api/v1/jsonschema
+---
+version: '1'
+component:
+  name: personio-mobile-android-coding-challenge
+  service: personio-mobile-android-coding-challenge
+  team: mapp
+  description: personio-mobile-android-coding-challenge
+  lifecycle: experimental
