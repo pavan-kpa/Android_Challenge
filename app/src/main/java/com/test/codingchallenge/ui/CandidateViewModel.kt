@@ -22,14 +22,23 @@ class CandidateViewModel: ViewModel() {
     var candidateDetail: State<Candidate?> = _candidateDetail
         private set
 
+    // Added state for search query
+    var searchQuery by mutableStateOf("")
+
+    // Filtered list of candidates based on the search query
+    val filteredCandidates: List<Candidate>
+        get() = candidateList.filter {
+            it.name.contains(searchQuery, ignoreCase = true)
+        }
+
     fun setCandidateDetail(candidate: Candidate) {
         _candidateDetail.value = candidate
     }
 
-    fun retrieveCandidates () {
+    fun retrieveCandidates() {
         viewModelScope.launch {
             isLoading = true
-            errorMessage = "";
+            errorMessage = ""
             val apiService = CandidateService.getInstance()
             try {
                 candidateList.clear()

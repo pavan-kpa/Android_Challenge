@@ -25,7 +25,6 @@ import com.test.codingchallenge.ui.CandidateViewModel
 import com.test.codingchallenge.ui.components.CandidateDetails
 import com.test.codingchallenge.ui.components.CandidateList
 
-
 enum class CandidatesScreen(@StringRes val title: Int) {
     List(title = R.string.candidate_list),
     Details(title = R.string.candidate_details)
@@ -83,6 +82,7 @@ fun CandidatesApp(
             modifier = Modifier.padding(innerPadding)
         ) {
 
+            // Candidate List Screen with Search Functionality
             composable(route = CandidatesScreen.List.name) {
                 CandidateList(
                     viewModel = vm,
@@ -90,9 +90,11 @@ fun CandidatesApp(
                     onCandidatePressedCallback = {
                         vm.setCandidateDetail(it)
                         navController.navigate(CandidatesScreen.Details.name)
-                    })
+                    }
+                )
             }
 
+            // Candidate Details Screen
             composable(route = CandidatesScreen.Details.name) {
                 CandidateDetails(viewModel = vm)
             }
